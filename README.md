@@ -39,26 +39,26 @@ Flask-Todo-App/
 ## ⚙️ Setup & Installation
 
 ```bash
-# Repository clone karo
+# Clone Repository c 
 git clone https://github.com/ahmadhasssan461-hub/Flask-Todo-App.git
 
-# Folder mein jao
+# Open Folder
 cd Flask-Todo-App
 
-# Virtual environment banao
+# Create Virtual environment 
 python -m venv .venv
 
-# Activate karo (Windows)
+# Activate (Windows)
 .venv\Scripts\activate
 
-# Required packages install karo
+# Required packages install 
 pip install flask flask_sqlalchemy
 
-# App run karo
+# App run 
 python main.py
 ```
 
-Browser mein jao:
+In Browser:
 ```
 http://127.0.0.1:5000
 ```
