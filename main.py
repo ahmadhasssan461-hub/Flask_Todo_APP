@@ -1,7 +1,14 @@
+import os
 from flask_sqlalchemy import SQLAlchemy 
 from flask import Flask, render_template, request, redirect
+
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Todo.db"
+
+db_url = os.getenv("DATABASE_URL", "sqlite:///Todo.db")
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 db = SQLAlchemy(app)
 class todo(db.Model):
     sno = db.Column(db.Integer,primary_key = True)
@@ -44,7 +51,8 @@ def update_post(sno):
     task.priority = request.form["priority"]
     db.session.commit()
     return redirect("/")
+with app.app_context():
+    db.create_all()
+
 if __name__ == "__main__":
- with app.app_context():
-     db.create_all()
-app.run(debug=True)
+    app.run(debug=True)
